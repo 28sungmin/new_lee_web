@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>영상 앨범 · 우리 가족 이야기</title>
+  <link rel="icon" href="/img/logo2.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+KR:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="./css/style.css"/>
+  <link rel="stylesheet" href="./css/album.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <a href="index.html"><img src="img/logo_outline.png" alt="우리 가족 이야기 로고" class="nav-logo-img"></a>
+  </div>  <ul class="nav-links">
+    <li><a href="index.html#members">가족 소개</a></li>
+    <li><a href="index.html#timeline">우리의 역사</a></li>
+    <li><a href="index.html#gallery">추억 앨범</a></li>
+    <li><a href="index.html#messages">가족 게시판</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="album-header">
+  <div class="album-header__glow g1"></div>
+  <div class="album-header__glow g2"></div>
+  <div class="album-header__inner">
+    <a href="index.html" class="back-btn">← 메인으로 돌아가기</a>
+    <p class="album-header__eyebrow">Video Memories</p>
+    <h1 class="album-header__title">영상 <em>앨범</em></h1>
+    <p class="album-header__sub">우리 가족의 소중한 순간을 영상으로 담아요 🎬</p>
+  </div>
+</header>
+
+<!-- 영상 목록 -->
+<section class="video-section">
+  <div class="video-section__inner">
+    <div class="video-section__head">
+      <div class="section-eyebrow">Our Videos</div>
+      <h2 class="section-title">우리 가족 영상</h2>
+    </div>
+    <div class="video-grid" id="albumGrid">
+      <!-- 영상이 없을 때 표시 -->
+      <div class="empty-state" id="albumEmpty" style="display:none">
+        <div class="empty-state__icon">🎥</div>
+        <p class="empty-state__msg">아직 등록된 영상이 없어요.<br>album.js에 영상을 추가해보세요!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>우리 가족 이야기</strong> &nbsp;·&nbsp; 사랑으로 만든 공간 💕</p>
+  <p style="margin-top:0.5rem;font-size:0.72rem;opacity:0.5">© 2025 Our Family · Made with Love</p>
+</footer>
+
+<script src="./js/album.js"></script>
+</body>
+</html>
