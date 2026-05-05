@@ -484,6 +484,7 @@ footer strong { color: var(--blush); font-family: 'Playfair Display', serif; fon
 @media (max-width: 768px) {
   nav { 
     padding: 2.2rem 1.5rem 2rem 1.5rem; 
+    top: 0;
   }
   .nav-links { display: none; }
 
