@@ -545,7 +545,7 @@ footer strong { color: var(--blush); font-family: 'Playfair Display', serif; fon
 }
 
 /* ── 360px 이하 초소형 모바일 ── */
-@media (max-width: 360px) {
+@media (max-width: 400px) {
 
   nav {
     padding: 2.2rem 1.5rem 2rem 1.5rem; 
