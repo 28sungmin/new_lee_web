@@ -25,6 +25,8 @@ body {
   color: var(--deep);
   font-family: 'Noto Serif KR', serif;
   overflow-x: hidden;
+  margin-top: env(safe-area-inset-top);
+  min-height: calc(var(--vh, 1h) * 100 - env(safe-area-inset-top)); 
 }
 
 /* ── 노이즈 텍스처 오버레이 ── */
@@ -45,11 +47,6 @@ nav {
   background: rgba(250,246,240,0.88);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(196,113,74,0.15);
-
-    /* Safe Area 대응 추가 */
-  padding-top: max(1.2rem, env(safe-area-inset-top));
-  padding-left:  max(3rem,  env(safe-area-inset-left));
-  padding-right: max(3rem,  env(safe-area-inset-right));
 }
 .nav-logo {
   display: flex;
@@ -489,8 +486,9 @@ footer strong { color: var(--blush); font-family: 'Playfair Display', serif; fon
 @media (max-width: 768px) {
   nav {
     padding: 2.2rem 1.5rem 2rem 1.5rem; 
-    padding-top: max(2.2rem, env(safe-area-inset-top));
     top: 0;
+    position: fixed;
+    top: env(safe-area-inset-top);
   }
   .nav-links { display: none; }
 
