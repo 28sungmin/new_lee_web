@@ -488,14 +488,9 @@ footer strong { color: var(--blush); font-family: 'Playfair Display', serif; fon
    ──────────────────────────────── */
 @media (max-width: 768px) {
   nav {
-    /* 단축속성 대신 개별 속성으로 */
-    padding-top:    max(0.9rem, env(safe-area-inset-top));
-    padding-bottom: 0.9rem;
-    padding-left:   max(1.5rem, env(safe-area-inset-left));
-    padding-right:  max(1.5rem, env(safe-area-inset-right));
-  }
-  .nav-logo-img {
-    height: 2.8rem;  /* 6rem → 2.8rem */
+    padding: 2.2rem 1.5rem 2rem 1.5rem; 
+    padding-top: max(2.2rem, env(safe-area-inset-top));
+    top: 0;
   }
   .nav-links { display: none; }
 
