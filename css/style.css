@@ -25,8 +25,6 @@ body {
   color: var(--deep);
   font-family: 'Noto Serif KR', serif;
   overflow-x: hidden;
-  margin-top: env(safe-area-inset-top);
-  min-height: calc(var(--vh, 1h) * 100 - env(safe-area-inset-top)); 
 }
 
 /* ── 노이즈 텍스처 오버레이 ── */
@@ -488,7 +486,7 @@ footer strong { color: var(--blush); font-family: 'Playfair Display', serif; fon
     padding: 2.2rem 1.5rem 2rem 1.5rem; 
     top: 0;
     position: fixed;
-    top: env(safe-area-inset-top);
+    padding-top: max(2.2rem, env(safe-area-inset-top));
   }
   .nav-links { display: none; }
 
@@ -544,4 +542,53 @@ footer strong { color: var(--blush); font-family: 'Playfair Display', serif; fon
   }
   .tl-left  { order: 1; text-align: left; padding: 0; }
   .tl-right { order: 2; text-align: left; padding: 0; }
+}
+
+/* ── 360px 이하 초소형 모바일 ── */
+@media (max-width: 380px) {
+
+  nav {
+    padding: 2.2rem 1.5rem 2rem 1.5rem; 
+    top: 0;
+    position: fixed;
+    padding-top: max(0.8rem, env(safe-area-inset-top));
+  }
+  .nav-links { display: none; }
+
+  /* 히어로 */
+  .hero-title { font-size: 2.4rem; }
+  .hero-desc  { font-size: 0.88rem; }
+  .hero-visual { max-width: 100%; }
+  .photo-card { border-radius: 14px; }
+
+  /* 가족 소개 */
+  .members-grid {
+    grid-template-columns: 1fr 1fr; /* 4개 → 2열 */
+    gap: 1rem;
+  }
+  .member-card { padding: 1.4rem 1rem; }
+  .member-name { font-size: 1.05rem; }
+  .member-bio  { font-size: 0.75rem; }
+
+  /* 타임라인 */
+  .tl-year  { font-size: 1.1rem; }
+  .tl-title { font-size: 0.85rem; }
+
+  /* 갤러리 */
+  .gallery-item.g1 { height: 210px; }
+  .gallery-header {
+    flex-direction: column;  /* 제목 + 버튼 세로 정렬 */
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  /* 섹션 여백 */
+  section { padding: 3rem 1.2rem; }
+
+  /* 게시판 */
+  .msg-input-area { padding: 1.1rem; }
+  .btn-post { padding: 0.5rem 1.1rem; font-size: 0.72rem; }
+
+  /* 푸터 */
+  footer { padding: 2rem 1.2rem; font-size: 0.72rem; }
 }
