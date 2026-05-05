@@ -577,11 +577,23 @@ footer strong { color: var(--blush); font-family: 'Playfair Display', serif; fon
   /* 갤러리 */
   .gallery-item.g1 { height: 210px; }
   .gallery-header {
-    flex-direction: row;     /* column → row로 변경 */
-    align-items: center;
-    flex-wrap: wrap;         /* 너무 좁으면 자동 줄바꿈 */
-    gap: 0.6rem;
+    display: flex;
+    flex-direction: column;  /* 전체는 세로 정렬 */
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
   }
+
+  /* 제목 + 버튼만 가로로 묶기 */
+  .gallery-header .title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .gallery-header .section-title { margin-bottom: 0; }
+  .btn-album { margin-bottom: 0; }
 
   /* 섹션 여백 */
   section { padding: 3rem 1.2rem; }
