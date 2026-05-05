@@ -41,7 +41,7 @@ body::before {
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 1.2rem 3rem;
+  padding: 1.7rem 3rem;
   background: rgba(250,246,240,0.88);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(196,113,74,0.15);
@@ -54,7 +54,7 @@ nav {
   font-style: italic; font-size: 1.3rem;
   color: var(--terracotta);
   letter-spacing: 0.02em;
-  height: 45px;
+  height: 7px;
 }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a {
@@ -324,42 +324,18 @@ section { padding: 6rem 3rem; }
   transform: translateX(-50%);
 }
 
-/* timeline: 스크롤 시 항목 하나씩 나타나게 하는 애니메이션 */
-.timeline-list .tl-item {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .5s ease, transform .5s ease;
-  will-change: opacity, transform;
-}
-.timeline-list .tl-item.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-/* 선택사항: 각 항목이 화면 중앙에 가까울 때 트리거하려면 threshold 조절 */
-@media (prefers-reduced-motion: reduce) {
-  .timeline-list .tl-item,
-  .timeline-list .tl-item.in-view {
-    transition: none;
-    transform: none;
-    opacity: 1;
-  }
-}
-
 .tl-item {
   display: grid; grid-template-columns: 1fr 60px 1fr;
   align-items: start; margin-bottom: 3rem;
-  opacity: 0; transform: translateY(20px);
-  transition: opacity 0.5s, transform 0.5s;
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  will-change: opacity, transform;
 }
-.tl-item.visible { opacity: 1; transform: none; }
+.tl-item.in-view,
+.tl-item.visible { opacity: 1; transform: translateY(0); }
 
 .tl-left  { text-align: right; padding-right: 2rem; padding-top: 0.3rem; }
 .tl-right { padding-left: 2rem; padding-top: 0.3rem; }
-
-/* 짝수 항목: 좌우 반전 */
-.tl-item:nth-child(even) .tl-left  { order: 3; text-align: left; padding-left: 2rem; padding-right: 0; }
-.tl-item:nth-child(even) .tl-center { order: 2; }
-.tl-item:nth-child(even) .tl-right { order: 1; text-align: right; padding-right: 2rem; padding-left: 0; }
 
 .tl-center { display: flex; align-items: flex-start; justify-content: center; padding-top: 0.2rem; }
 .tl-dot {
@@ -368,12 +344,13 @@ section { padding: 6rem 3rem; }
   box-shadow: 0 0 0 3px var(--blush); flex-shrink: 0; margin-top: 0.2rem;
 }
 
-.tl-year {
-  font-family: 'Playfair Display', serif; font-size: 1.6rem;
-  font-weight: 700; color: var(--terracotta); line-height: 1; margin-bottom: 0.3rem;
-}
+.tl-year  { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--terracotta); line-height: 1; margin-bottom: 0.3rem; }
 .tl-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.4rem; }
 .tl-desc  { font-size: 0.82rem; color: #6a5040; line-height: 1.7; font-weight: 300; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tl-item { transition: none; transform: none; opacity: 1; }
+}
 
 /* ────────────────────────────────
    GALLERY (추억 앨범)
@@ -505,7 +482,9 @@ footer strong { color: var(--blush); font-family: 'Playfair Display', serif; fon
    반응형 (모바일)
    ──────────────────────────────── */
 @media (max-width: 768px) {
-  nav { padding: 1rem 1.5rem; }
+  nav { 
+    padding: 2.2rem 1.5rem 2rem 1.5rem; 
+  }
   .nav-links { display: none; }
 
   #hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; gap: 2rem; }
@@ -513,13 +492,51 @@ footer strong { color: var(--blush); font-family: 'Playfair Display', serif; fon
 
   section { padding: 4rem 1.5rem; }
 
-  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-  .gallery-item:first-child { grid-row: auto; }
+    /* ── 갤러리 헤더: 제목 + 버튼 나란히 ── */
+  .gallery-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .gallery-header .section-title {
+    margin-bottom: 0;   /* 기본 하단 여백 제거 */
+  }
+  .btn-album {
+    margin-bottom: 0;   /* 기본 하단 여백 제거 */
+  }
 
-  .timeline-list::before { left: 24px; }
-  .tl-item { grid-template-columns: 0 48px 1fr; }
-  .tl-left { display: none; }
-  .tl-item:nth-child(even) .tl-left   { display: none; }
-  .tl-item:nth-child(even) .tl-center { order: 1; }
-  .tl-item:nth-child(even) .tl-right  { order: 2; text-align: left; padding-right: 0; padding-left: 1.5rem; }
+  /* ── 갤러리: g1만 표시 ── */
+  .gallery-grid {
+    display: block;     /* grid 해제 */
+  }
+  .gallery-item {
+    display: none;      /* 전부 숨기고 */
+  }
+  .gallery-item.g1 {
+    display: block;     /* g1만 표시 */
+    height: 260px;      /* 고정 높이 */
+    border-radius: 16px;
+  }
+  .gallery-item:first-child {
+    grid-row: auto;     /* 기존 grid-row 초기화 */
+  }
+
+  .timeline-list::before { left: 7px; transform: none; }
+  .tl-item {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 2.4rem;
+    margin-bottom: 2.2rem;
+  }
+
+  .tl-center {
+    position: absolute;
+    left: 0; top: 3px;
+    padding: 0;
+  }
+  .tl-left  { order: 1; text-align: left; padding: 0; }
+  .tl-right { order: 2; text-align: left; padding: 0; }
 }

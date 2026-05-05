@@ -51,11 +51,3 @@ const revealObserver = new IntersectionObserver(
 document.querySelectorAll('.reveal, .tl-item').forEach((el) => {
   revealObserver.observe(el);
 });
-
-
-// 붙여넣기: 브라우저 콘솔
-const opens = (document.documentElement.innerHTML.match(/<section\b/gi)||[]).length;
-const closes = (document.documentElement.innerHTML.match(/<\/section>/gi)||[]).length;
-console.log('section opens / closes:', opens, closes);
-console.log('#members 존재 여부:', !!document.getElementById('members'));
-console.log('members outerHTML (처음 500문자):', document.getElementById('members')?.outerHTML.slice(0,500));
