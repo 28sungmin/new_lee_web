@@ -577,17 +577,14 @@ footer strong { color: var(--blush); font-family: 'Playfair Display', serif; fon
   /* 갤러리 */
   .gallery-item.g1 { height: 210px; }
   .gallery-header {
-    flex-direction: column;  /* 제목 + 버튼 세로 정렬 */
-    align-items: flex-start;
+    flex-direction: row;     /* column → row로 변경 */
+    align-items: center;
+    flex-wrap: wrap;         /* 너무 좁으면 자동 줄바꿈 */
     gap: 0.6rem;
   }
 
   /* 섹션 여백 */
   section { padding: 3rem 1.2rem; }
-
-  /* 게시판 */
-  .msg-input-area { padding: 1.1rem; }
-  .btn-post { padding: 0.5rem 1.1rem; font-size: 0.72rem; }
 
   /* 푸터 */
   footer { padding: 2rem 1.2rem; font-size: 0.72rem; }
