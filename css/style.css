@@ -561,18 +561,8 @@ footer strong { color: var(--blush); font-family: 'Playfair Display', serif; fon
   .hero-visual { max-width: 100%; }
   .photo-card { border-radius: 14px; }
 
-  /* 가족 소개 */
-  .members-grid {
-    grid-template-columns: 1fr 1fr; /* 4개 → 2열 */
-    gap: 1rem;
-  }
-  .member-card { padding: 1.4rem 1rem; }
-  .member-name { font-size: 1.05rem; }
-  .member-bio  { font-size: 0.75rem; }
-
-  /* 타임라인 */
-  .tl-year  { font-size: 1.1rem; }
-  .tl-title { font-size: 0.85rem; }
+  #members  { display: none; }
+  #timeline { display: none; }
 
   /* 갤러리 */
   .gallery-item.g1 { height: 210px; }
