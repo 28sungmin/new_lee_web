@@ -71,6 +71,29 @@ nav {
   object-fit: contain;
 }
 
+/* ── 햄버거 메뉴 버튼 (기본: 숨김, 모바일에서 표시) ── */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px; height: 44px;
+  padding: 0;
+  background: none; border: none; cursor: pointer;
+  z-index: 101;
+}
+.nav-toggle span {
+  display: block;
+  width: 26px; height: 2px;
+  background: var(--deep);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+/* 열렸을 때 X 모양으로 변형 */
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 /* ────────────────────────────────
    HERO
    ──────────────────────────────── */
@@ -483,12 +506,37 @@ footer strong { color: var(--blush); font-family: 'Playfair Display', serif; fon
    ──────────────────────────────── */
 @media (max-width: 768px) {
   nav {
-    padding: 2.2rem 1.5rem 2rem 1.5rem; 
+    padding: 1rem 1.5rem;
     top: 0;
     position: fixed;
-    padding-top: max(2.2rem, env(safe-area-inset-top));
+    padding-top: max(1rem, env(safe-area-inset-top));
   }
-  .nav-links { display: none; }
+
+  /* 햄버거 버튼 표시 */
+  .nav-toggle { display: flex; }
+
+  /* 메뉴: 평소엔 접힘, .open 이면 아래로 펼쳐짐 */
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    padding: 1.4rem 1.8rem 1.8rem;
+    background: rgba(250,246,240,0.98);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196,113,74,0.15);
+    box-shadow: 0 14px 30px rgba(43,30,20,0.12);
+    transform: translateY(-14px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .nav-links.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
 
   #hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; gap: 2rem; }
   .hero-visual { justify-self: center; max-width: 340px; }
@@ -548,12 +596,11 @@ footer strong { color: var(--blush); font-family: 'Playfair Display', serif; fon
 @media (max-width: 400px) {
 
   nav {
-    padding: 2.2rem 1.5rem 2rem 1.5rem; 
+    padding: 1rem 1.5rem;
     top: 0;
     position: fixed;
-    padding-top: max(0.8rem, env(safe-area-inset-top));
+    padding-top: max(1rem, env(safe-area-inset-top));
   }
-  .nav-links { display: none; }
 
   /* 히어로 */
   .hero-title { font-size: 2.4rem; }
