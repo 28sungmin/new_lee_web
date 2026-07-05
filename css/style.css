@@ -510,6 +510,9 @@ footer strong { color: var(--blush); font-family: 'Playfair Display', serif; fon
     top: 0;
     position: fixed;
     padding-top: max(1rem, env(safe-area-inset-top));
+    /* 모바일에선 헤더를 불투명하게 → 스크롤한 내용이 상태바/아일랜드 영역에 비치지 않음 */
+    background: var(--cream);
+    backdrop-filter: none;
   }
 
   /* 햄버거 버튼 표시 */
