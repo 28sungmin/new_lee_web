@@ -69,7 +69,14 @@ const VIDEOS = [
     title: '2026년 홍콩·마카오 여행',
     date: '2026',
     desc: '온 가족이 다녀온 홍콩·마카오 여행 ✈️',
+  },
+  {
+    url: 'https://youtube.com/playlist?list=PL61NwzsZqrLRYL_B46-s_f8IvPtgGboVt&si=u1go-KiqCUk9mLf-',
+    title: '2026년 2월 대학교 졸업',
+    date: '2026',
+    desc: '이성민의 대학교 졸업 🎓',
   }
+
 ];
 
 /* ══════════════════════════════════════════
