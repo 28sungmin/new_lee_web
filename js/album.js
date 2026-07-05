@@ -36,7 +36,7 @@ const VIDEOS = [
 
   {
     url: 'https://youtube.com/playlist?list=PL61NwzsZqrLTptXnBQ09CirW3abeBklWj&si=KbsGHne0pUssif0x',
-    title: '2022 여름 여행 모음',
+    title: '2022년 전라도 여행',
     date: '2022',
     desc: '엄마, 아빠와 함께한 전라도 여행 🚘',
   },
