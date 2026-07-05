@@ -39,6 +39,7 @@ const PLACES = [
 
   /* ── 🇺🇸 미국 ── */
   { name: '샬럿',      country: '미국', flag: '🇺🇸', lat: 35.2271,  lng: -80.8431 },
+  { name: '애슈빌',    country: '미국', flag: '🇺🇸', lat: 35.5951,  lng: -82.5515 },
   { name: '워싱턴',    country: '미국', flag: '🇺🇸', lat: 38.9072,  lng: -77.0369 },
   { name: '올란도',    country: '미국', flag: '🇺🇸', lat: 28.5383,  lng: -81.3792 },
   { name: '호놀룰루',  country: '미국', flag: '🇺🇸', lat: 21.3069,  lng: -157.8583 },
@@ -59,12 +60,12 @@ const PLACES = [
   { name: '골드코스트', country: '호주', flag: '🇦🇺', lat: -28.0167, lng: 153.4000 },
 
   /* ── 🇩🇪 독일 ── (2023 유럽 여행) */
-  { name: '프랑크푸르트', country: '독일', flag: '🇩🇪', lat: 50.1109, lng: 8.6821, album: 'europe-2023' },
+  { name: '프랑크푸르트', country: '독일', flag: '🇩🇪', lat: 50.1109, lng: 8.6821 },
   { name: '슈투트가르트', country: '독일', flag: '🇩🇪', lat: 48.7758, lng: 9.1829, album: 'europe-2023' },
 
   /* ── 🇫🇷 프랑스 / 🇬🇧 영국 / 🇦🇹 오스트리아 ── (2023 유럽 여행) */
   { name: '파리',      country: '프랑스',     flag: '🇫🇷', lat: 48.8566, lng: 2.3522,  album: 'europe-2023' },
-  { name: '런던',      country: '영국',       flag: '🇬🇧', lat: 51.5074, lng: -0.1278, album: 'europe-2023' },
+  { name: '런던',      country: '영국',       flag: '🇬🇧', lat: 51.5074, lng: -0.1278 },
   { name: '빈',        country: '오스트리아', flag: '🇦🇹', lat: 48.2082, lng: 16.3738, album: 'europe-2023' },
 
   /* ── 🇮🇹 이탈리아 / 🇻🇦 바티칸 ── (2023 유럽 여행) */
@@ -205,11 +206,30 @@ document.addEventListener('DOMContentLoaded', () => {
     g.append('path').datum({ type: 'Sphere' }).attr('class', 'vmap-sphere').attr('d', path);
     g.append('path').datum(d3.geoGraticule10()).attr('class', 'vmap-graticule').attr('d', path);
 
-    // 나라 (방문한 나라는 색으로 하이라이트)
+    // 나라 (기본 지형)
     g.append('g').selectAll('path.vmap-country')
       .data(land.features)
       .join('path')
-      .attr('class', d => 'vmap-country' + (VISITED_COUNTRIES.has(d.properties.name) ? ' vmap-country--visited' : ''))
+      .attr('class', 'vmap-country')
+      .attr('d', path);
+
+    // 방문한 나라 하이라이트 (기본 지형 위에 색칠)
+    //  · 프랑스 국경에는 남미의 '프랑스령 기아나'가 포함돼 있어, 방문하지 않은 그 지역은 제외
+    function highlightGeometry(f) {
+      if (f.properties.name === 'France' && f.geometry.type === 'MultiPolygon') {
+        const coords = f.geometry.coordinates.filter(poly =>
+          d3.geoCentroid({ type: 'Polygon', coordinates: poly })[0] > -25);   // 아메리카쪽(경도 -25 미만) 제외
+        return { ...f, geometry: { type: 'MultiPolygon', coordinates: coords } };
+      }
+      return f;
+    }
+    const visitedFeatures = land.features
+      .filter(f => VISITED_COUNTRIES.has(f.properties.name))
+      .map(highlightGeometry);
+    g.append('g').selectAll('path.vmap-visited')
+      .data(visitedFeatures)
+      .join('path')
+      .attr('class', 'vmap-country vmap-country--visited')
       .attr('d', path);
 
     // 나라 이름 라벨(영문)
