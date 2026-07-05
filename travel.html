@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>여행 지도 · 우리 가족 이야기</title>
+  <link rel="icon" href="/img/logo2.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+KR:wght@300;400;600&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="./css/style.css"/>
+  <link rel="stylesheet" href="./css/travel.css"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <a href="index.html"><img src="img/logo_outline.png" alt="우리 가족 이야기 로고" class="nav-logo-img"></a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html#members">가족 소개</a></li>
+    <li><a href="index.html#timeline">우리의 역사</a></li>
+    <li><a href="index.html#gallery">추억 앨범</a></li>
+    <li><a href="travel.html">여행 지도</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="travel-header">
+  <div class="travel-header__glow g1"></div>
+  <div class="travel-header__glow g2"></div>
+  <div class="travel-header__inner">
+    <a href="index.html" class="back-btn">← 메인으로 돌아가기</a>
+    <p class="travel-header__eyebrow">Our Journeys</p>
+    <h1 class="travel-header__title">우리 가족 <em>여행 지도</em></h1>
+    <p class="travel-header__sub">함께 걸어온 전 세계의 발자취를 한눈에 담아요 🌍</p>
+    <div class="travel-stats">
+      <div class="travel-stat">
+        <span class="travel-stat__num" id="statPlaces">0</span>
+        <span class="travel-stat__label">방문한 곳</span>
+      </div>
+      <div class="travel-stat">
+        <span class="travel-stat__num" id="statCountries">0</span>
+        <span class="travel-stat__label">나라</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAP -->
+<section class="map-section">
+  <div class="map-section__inner">
+    <div class="section-eyebrow">World Map</div>
+    <h2 class="section-title">우리가 다녀온 곳</h2>
+    <div id="map" class="travel-map"></div>
+    <p class="map-hint">📍 핀을 클릭하면 그때의 추억을 볼 수 있어요.</p>
+  </div>
+</section>
+
+<!-- 장소 목록 -->
+<section class="places-section">
+  <div class="places-section__inner">
+    <div class="section-eyebrow">Travel Log</div>
+    <h2 class="section-title">여행 기록</h2>
+    <div class="places-grid" id="placesGrid">
+      <!-- 장소 카드가 여기에 자동으로 채워집니다 -->
+      <div class="empty-state" id="placesEmpty" style="display:none">
+        <div class="empty-state__icon">🧳</div>
+        <p class="empty-state__msg">아직 등록된 여행지가 없어요.<br>travel.js에 장소를 추가해보세요!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>우리 가족 이야기</strong> &nbsp;·&nbsp; 사랑으로 만든 공간 💕</p>
+  <p style="margin-top:0.5rem;font-size:0.72rem;opacity:0.5">© 2026 Lee Family · Made with Love</p>
+</footer>
+
+<!-- D3.js + TopoJSON (세계 지도를 직접 그리는 벡터 라이브러리) -->
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script src="./js/travel.js"></script>
+</body>
+</html>

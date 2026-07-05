@@ -155,6 +155,17 @@
   box-shadow: 0 20px 60px rgba(43,30,20,0.13);
 }
 
+/* 여행 지도에서 넘어왔을 때 강조 효과 */
+.video-card--highlight {
+  animation: albumPulse 2.6s ease;
+}
+@keyframes albumPulse {
+  0%   { box-shadow: 0 8px 40px rgba(43,30,20,0.08); }
+  15%  { box-shadow: 0 0 0 4px var(--terracotta, #c4714a), 0 20px 60px rgba(196,113,74,0.35); }
+  70%  { box-shadow: 0 0 0 4px var(--terracotta, #c4714a), 0 20px 60px rgba(196,113,74,0.35); }
+  100% { box-shadow: 0 8px 40px rgba(43,30,20,0.08); }
+}
+
 /* 썸네일 영역 (16:9 비율 유지) */
 .video-thumb {
   position: relative;

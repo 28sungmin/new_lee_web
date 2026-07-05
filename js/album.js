@@ -11,7 +11,12 @@
      title: '영상 제목',            ← 필수
      date:  '날짜 (자유 형식)',     ← 선택
      desc:  '한 줄 설명',           ← 선택
+     id:    '여행지도-연결용-아이디',  ← 선택 (여행 지도와 연결할 때 사용)
    }
+
+   🔗 여행 지도(travel.js)와 연결하려면 이 영상에 id를 정하고,
+      travel.js의 해당 장소에 album: '같은-id' 를 넣으면
+      지도에서 "영상 앨범 보기" 버튼이 이 영상으로 연결됩니다.
 
    지원 URL 형식:
      • youtube.com/watch?v=...
@@ -39,36 +44,42 @@ const VIDEOS = [
     title: '2022년 전라도 여행',
     date: '2022',
     desc: '엄마, 아빠와 함께한 전라도 여행 🚘',
+    id: 'jeolla-2022',
   },
   {
     url: 'https://youtube.com/playlist?list=PL61NwzsZqrLQ8cpBPNO2Wbt5OyBCTpyYm&si=LH8QpkgxvycqNkht',
     title: '2023년 유럽 여행',
     date: '2023',
     desc: '오빠를 만나러 가봐요~ ✨',
+    id: 'europe-2023',
   },
   {
     url: 'https://youtube.com/playlist?list=PL61NwzsZqrLQBx5HB5MbRVk7FBe5u1tfW&si=ctycTjs2kxGVi89s',
     title: '2023년 부산 여행',
     date: '2023',
     desc: '엄빠와 함께 부산 여행 🌊',
+    id: 'busan-2023',
   },
   {
     url: 'https://youtube.com/playlist?list=PL61NwzsZqrLTDZw6fzHrigHFnYNi5Vjr6&si=ALQRlhDDcuFYDevo',
     title: '2023년 친가 여행',
     date: '2023',
     desc: '친가 가족들과 함께한 즐거운 시간 🏡',
+    id: 'chinga-2023',
   },
   {
     url: 'https://youtube.com/playlist?list=PL61NwzsZqrLQhRdUuoEIY0VpW75uHZow3&si=P31SF1EawsDGqFfq',
     title: '2024년 양양 여행',
     date: '2024',
     desc: '외할머니와 함께 양양 여행 🌊',
+    id: 'yangyang-2024',
   },
   {
     url: 'https://youtube.com/playlist?list=PL61NwzsZqrLTZsnM0daI4lb1E7_c6ZnFt&si=J7kPJ81jsgEfvrdD',
     title: '2026년 홍콩·마카오 여행',
     date: '2026',
     desc: '온 가족이 다녀온 홍콩·마카오 여행 ✈️',
+    id: 'hongkong-macau-2026',
   },
   {
     url: 'https://youtube.com/playlist?list=PL61NwzsZqrLRYL_B46-s_f8IvPtgGboVt&si=u1go-KiqCUk9mLf-',
@@ -172,7 +183,7 @@ function buildPlaylistThumb() {
 }
 
 /* ── 카드 생성 ── */
-function buildCard({ url, title, date, desc }) {
+function buildCard({ url, title, date, desc, id }) {
   const parsed = parseYouTubeUrl(url);
   if (!parsed) return null;
 
@@ -183,6 +194,7 @@ function buildCard({ url, title, date, desc }) {
 
   const card = document.createElement('div');
   card.className = 'video-card';
+  if (id) card.id = 'album-' + id;   // 여행 지도에서 연결할 때 사용
   card.innerHTML = `
     <div class="video-thumb">
       ${thumbInner}
@@ -232,3 +244,19 @@ function render() {
 }
 
 render();
+
+/* ── 여행 지도에서 넘어온 링크(#album-xxx) 처리 ──
+   해당 영상으로 스크롤하고 잠깐 강조 효과를 줍니다. */
+function focusFromHash() {
+  const hash = location.hash.slice(1);            // 예: 'jeolla-2022'
+  if (!hash) return;
+  const el = document.getElementById('album-' + hash);
+  if (!el) return;
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  el.classList.add('video-card--highlight');
+  setTimeout(() => el.classList.remove('video-card--highlight'), 2600);
+}
+
+// 페이지 로드 직후 & 이후 해시 변경 시 모두 처리
+requestAnimationFrame(focusFromHash);
+window.addEventListener('hashchange', focusFromHash);
