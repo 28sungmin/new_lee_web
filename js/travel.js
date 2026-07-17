@@ -64,7 +64,7 @@ const PLACES = [
   { name: '슈투트가르트', country: '독일', flag: '🇩🇪', lat: 48.7758, lng: 9.1829, album: 'europe-2023' },
 
   /* ── 🇫🇷 프랑스 / 🇬🇧 영국 / 🇦🇹 오스트리아 ── (2023 유럽 여행) */
-  { name: '파리',      country: '프랑스',     flag: '🇫🇷', lat: 48.8566, lng: 2.3522,  album: 'europe-2023' },
+  { name: '파리',      country: '프랑스',     flag: '🇫🇷', lat: 48.8566, lng: 2.3522 },
   { name: '런던',      country: '영국',       flag: '🇬🇧', lat: 51.5074, lng: -0.1278 },
   { name: '빈',        country: '오스트리아', flag: '🇦🇹', lat: 48.2082, lng: 16.3738, album: 'europe-2023' },
 
@@ -79,7 +79,7 @@ const PLACES = [
   { name: '서울',      country: '대한민국', flag: '🇰🇷', lat: 37.5665, lng: 126.9780 },
   { name: '용인',      country: '대한민국', flag: '🇰🇷', lat: 37.2411, lng: 127.1776 },
   { name: '춘천',      country: '대한민국', flag: '🇰🇷', lat: 37.8813, lng: 127.7300 },
-  { name: '속초',      country: '대한민국', flag: '🇰🇷', lat: 38.2070, lng: 128.5918 },
+  { name: '속초',      country: '대한민국', flag: '🇰🇷', lat: 38.2070, lng: 128.5918, album: 'sokcho-2026' },
   { name: '양양',      country: '대한민국', flag: '🇰🇷', lat: 38.0754, lng: 128.6190,
     album: [
       { id: 'yangyang-2024', label: '2024 양양 여행' },

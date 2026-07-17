@@ -86,6 +86,13 @@ const VIDEOS = [
     title: '2026년 2월 대학교 졸업',
     date: '2026',
     desc: '이성민의 대학교 졸업 🎓',
+  },
+  {
+    url: 'https://youtu.be/yDoR0rnGf1c',
+    title: '2026년 친가 속초 여행',
+    date: '2026.07',
+    desc: '가족과 함께한 속초 여행 🌊',
+    id: 'sokcho-2026',
   }
 
 ];
